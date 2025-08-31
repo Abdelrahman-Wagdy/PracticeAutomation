@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="CucumberSuite" parallel="classes" thread-count="2" verbose="2">
+    <test name="Parallel Browser Tests" parallel="classes" thread-count="2">
+        <classes>
+            <class name="runners.FirefoxTestRunner"/>
+            <class name="runners.ChromeTestRunner"/>
+        </classes>
+    </test>
+</suite>
