@@ -99,6 +99,9 @@
                     <threadCount>2</threadCount>
                     <perCoreThreadCount>false</perCoreThreadCount>
                     <argLine>-Dfile.encoding=UTF-8</argLine>
+                    <systemPropertyVariables>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
 

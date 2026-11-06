@@ -19,7 +19,6 @@ public class Hooks {
 
     @After
     public void tearDown() {
-        DriverFactory.quitDriver();
-        BrowserManager.clear();
+        try { DriverFactory.quitDriver(); } finally { BrowserManager.clear(); }
     }
 }

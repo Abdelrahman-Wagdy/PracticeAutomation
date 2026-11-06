@@ -11,6 +11,24 @@ import java.time.Duration;
 import java.util.List;
 
 public class BrowserActions {
+    public static WebDriverWait waitFor() {
+        return new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
+    }
+
+    public static WebElement visible(By locator) {
+        return waitFor().until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public static void click(By locator) {
+        waitFor().until(ExpectedConditions.elementToBeClickable(locator)).click();
+    }
+
+    public static void fill(By locator, String value) {
+        WebElement field = visible(locator);
+        field.clear();
+        field.sendKeys(value);
+    }
+
     private final static String URL = Config.get("url");
 
 
