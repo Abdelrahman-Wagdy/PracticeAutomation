@@ -8,7 +8,7 @@ import org.testng.annotations.DataProvider;
 import support.BrowserManager;
 
 @CucumberOptions(
-        features = "src/test/java/feature",
+        features = "classpath:features",
         glue = {"stepdefs"},
         plugin = {
                 "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
@@ -30,7 +30,7 @@ public class FirefoxTestRunner extends AbstractTestNGCucumberTests {
     }
 
     @Override
-    @DataProvider(parallel = true)
+    @DataProvider(parallel = false)
     public Object[][] scenarios() {
         return super.scenarios();
     }

@@ -2,27 +2,23 @@ package utils;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Properties;
 
 public final class Config {
-
-    private static final Properties PROPS = System.getProperties();
+    private static final Properties PROPS = new Properties();
 
     static {
-        String path = "src/test/resources/config.properties";
-        try (InputStream in = Files.newInputStream(Paths.get(path))) {
+        try (InputStream in = Config.class.getClassLoader().getResourceAsStream("config.properties")) {
+            if (in == null) throw new IllegalStateException("config.properties not found on classpath");
             PROPS.load(in);
         } catch (IOException e) {
-            throw new ExceptionInInitializerError("Cannot load config file: " + path);
+            throw new ExceptionInInitializerError(e);
         }
     }
 
     private Config() { }
 
-    /** read‑only accessor */
     public static String get(String key) {
-        return PROPS.getProperty(key);
+        return System.getProperty(key, PROPS.getProperty(key));
     }
 }
